@@ -11,11 +11,11 @@ import { HealthyPipe } from './healthy.pipe';
   directives: [FoodInfoComponent, NewFoodComponent, EditFoodComponent],
   pipes: [HealthyPipe],
   template: `
-  <select (change)="onChange($event.target.value)" class="form-control">
-    <option value="all">Show all Foods</option>
-    <option value="healthy">Show Healthy Foods</option>
-    <option value="unhealthy">Show Foods that are Bad for you</option>
-  </select>
+    <select (change)="onChange($event.target.value)" class="form-control" id="healthPipe">
+      <option value="all">Show all Foods</option>
+      <option value="healthy">Show Healthy Foods</option>
+      <option value="unhealthy">Show Foods that are Bad for you</option>
+    </select>
     <div *ngFor="#currentFood of foodList | healthy:filterHealth">
       <h3 (click)="clickFood(currentFood)">{{currentFood.name}}</h3>
       <food-info *ngIf="selectedFood === currentFood" [food]="currentFood"></food-info>

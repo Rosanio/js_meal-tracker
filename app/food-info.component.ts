@@ -5,8 +5,8 @@ import { Food } from './food.model';
   selector: 'food-info',
   inputs: ['food'],
   template: `
-    <p>{{food.details}}</p>
-    <p>{{food.calories}}</p>
+    <p>Details: {{food.details}}</p>
+    <p>Calories: {{food.calories}}</p>
   `
 })
 
