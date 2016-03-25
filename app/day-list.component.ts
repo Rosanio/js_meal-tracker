@@ -31,6 +31,7 @@ import { FoodListComponent } from './food-list.component';
       </div>
     </div>
     <br>
+    <br>
     <food-list [foodList]="dayFoodList" [selectedDay]="selectedDay" (onSubmitNewFood)="addNewFood($event)" *ngIf="selectedDay"></food-list>
   `
 })

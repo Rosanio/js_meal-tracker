@@ -65,6 +65,9 @@ export class FoodListComponent {
       averageCalories += this.foodList[i].calories;
     }
     averageCaloriesString = (Math.round((averageCalories/this.foodList.length)*100)/100).toFixed(2);
+    if(averageCaloriesString === "NaN") {
+      averageCaloriesString = "0";
+    }
     return averageCaloriesString;
   }
 }

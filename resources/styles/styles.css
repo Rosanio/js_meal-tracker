@@ -67,3 +67,14 @@ hr {
   background-color: #6E4F3C;
   color: white;
 }
+
+.selected:hover {
+  border: 2px solid #62905f;
+  background-color: #7C604F;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #62905f;
+}
