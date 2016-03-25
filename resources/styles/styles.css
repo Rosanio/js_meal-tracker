@@ -44,3 +44,26 @@ hr {
 .totalCalories {
   float: right;
 }
+
+.weekDay {
+  width: 13.6%;
+  float: left;
+  text-align: center;
+  border: 2px solid #6E4F3C;
+  border-radius: 15px;
+  margin-right: 0.4%;
+  background-color: #62905f;
+  height: 35px;
+  font-size: 20px;
+}
+
+.weekDay:hover {
+  cursor: pointer;
+  background-color: #66c05a;
+}
+
+.selected {
+  border: 2px solid #62905f;
+  background-color: #6E4F3C;
+  color: white;
+}

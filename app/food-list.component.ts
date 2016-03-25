@@ -41,7 +41,7 @@ export class FoodListComponent {
     }
   }
   createFood(foodArray: Array<any>) {
-    this.foodList.push(new Food(foodArray[0], foodArray[1], foodArray[2]));
+    this.foodList.push(new Food(foodArray[0], foodArray[1], foodArray[2], 'monday'));
   }
   onChange(filterOption) {
     this.filterHealth = filterOption;
