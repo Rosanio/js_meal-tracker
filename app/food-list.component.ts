@@ -11,6 +11,9 @@ import { HealthyPipe } from './healthy.pipe';
   directives: [FoodInfoComponent, NewFoodComponent, EditFoodComponent],
   pipes: [HealthyPipe],
   template: `
+    <div class="totalCalories">
+      <h3>Total Calories: {{totalCalories()}}</h3>
+    </div>
     <select (change)="onChange($event.target.value)" class="form-control" id="healthPipe">
       <option value="all">Show all Foods</option>
       <option value="healthy">Show Healthy Foods</option>
@@ -41,5 +44,12 @@ export class FoodListComponent {
   }
   onChange(filterOption) {
     this.filterHealth = filterOption;
+  }
+  totalCalories() {
+    var totalCalories: number = 0;
+    for(var i = 0; i < this.foodList.length; i++) {
+      totalCalories += this.foodList[i].calories;
+    }
+    return totalCalories;
   }
 }
