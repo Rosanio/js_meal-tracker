@@ -31,7 +31,7 @@ import { FoodListComponent } from './food-list.component';
       </div>
     </div>
     <br>
-    <food-list [foodList]="dayFoodList" *ngIf="selectedDay"></food-list>
+    <food-list [foodList]="dayFoodList" [selectedDay]="selectedDay" (onSubmitNewFood)="addNewFood($event)" *ngIf="selectedDay"></food-list>
   `
 })
 
@@ -51,5 +51,9 @@ export class DayListComponent {
         }
       }
     }
+  }
+  addNewFood(foodArray: Array<any>) {
+    this.allFoodsList.push(new Food(foodArray[0], foodArray[1], foodArray[2], this.selectedDay));
+    this.dayFoodList.push(new Food(foodArray[0], foodArray[1], foodArray[2], this.selectedDay));
   }
 }

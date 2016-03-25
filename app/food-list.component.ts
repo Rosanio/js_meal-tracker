@@ -1,4 +1,4 @@
-import { Component } from 'angular2/core';
+import { Component, EventEmitter } from 'angular2/core';
 import { Food } from './food.model';
 import { FoodInfoComponent } from './food-info.component';
 import { NewFoodComponent } from './new-food.component';
@@ -7,7 +7,8 @@ import { HealthyPipe } from './healthy.pipe';
 
 @Component({
   selector: 'food-list',
-  inputs: ['foodList'],
+  inputs: ['foodList', 'selectedDay'],
+  outputs: ['onSubmitNewFood'],
   directives: [FoodInfoComponent, NewFoodComponent, EditFoodComponent],
   pipes: [HealthyPipe],
   template: `
@@ -25,7 +26,7 @@ import { HealthyPipe } from './healthy.pipe';
       <food-info *ngIf="selectedFood === currentFood" [food]="currentFood"></food-info>
     </div>
     <edit-food [food]="selectedFood" *ngIf="selectedFood"></edit-food>
-    <new-food (onSubmitNewFood)="createFood($event)"></new-food>
+    <new-food (onSubmitNewFood)="submitNewFood($event)"></new-food>
   `
 })
 
@@ -33,6 +34,10 @@ export class FoodListComponent {
   public foodList: Food[];
   public selectedFood: Food;
   public filterHealth: string = "all";
+  public onSubmitNewFood: EventEmitter<any>;
+  constructor() {
+    this.onSubmitNewFood = new EventEmitter();
+  }
   clickFood(clickedFood: Food) {
     if(this.selectedFood === clickedFood) {
       this.selectedFood = undefined;
@@ -40,8 +45,8 @@ export class FoodListComponent {
       this.selectedFood = clickedFood;
     }
   }
-  createFood(foodArray: Array<any>) {
-    this.foodList.push(new Food(foodArray[0], foodArray[1], foodArray[2], 'monday'));
+  submitNewFood(foodArray: Array<any>) {
+    this.onSubmitNewFood.emit(foodArray);
   }
   onChange(filterOption) {
     this.filterHealth = filterOption;
