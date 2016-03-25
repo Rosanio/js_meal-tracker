@@ -12,7 +12,8 @@ import { HealthyPipe } from './healthy.pipe';
   pipes: [HealthyPipe],
   template: `
     <div class="totalCalories">
-      <h3>Total Calories: {{totalCalories()}}</h3>
+      <h3>Total Calories: {{totalCalories()}}</h3><br>
+      <h3>Average Calories per Meal: {{averageCalories()}}</h3>
     </div>
     <select (change)="onChange($event.target.value)" class="form-control" id="healthPipe">
       <option value="all">Show all Foods</option>
@@ -51,5 +52,14 @@ export class FoodListComponent {
       totalCalories += this.foodList[i].calories;
     }
     return totalCalories;
+  }
+  averageCalories() {
+    var averageCalories: number = 0;
+    var averageCaloriesString: string;
+    for(var i = 0; i < this.foodList.length; i++) {
+      averageCalories += this.foodList[i].calories;
+    }
+    averageCaloriesString = (Math.round((averageCalories/this.foodList.length)*100)/100).toFixed(2);
+    return averageCaloriesString;
   }
 }

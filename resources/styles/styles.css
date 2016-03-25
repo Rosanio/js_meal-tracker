@@ -37,6 +37,10 @@ input {
   margin-bottom: 5px;
 }
 
+hr {
+  border-color: #6E4F3C;
+}
+
 .totalCalories {
   float: right;
 }
