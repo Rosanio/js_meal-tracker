@@ -2,12 +2,13 @@ import { Component } from 'angular2/core';
 import { Food } from './food.model';
 import { FoodInfoComponent } from './food-info.component';
 import { NewFoodComponent } from './new-food.component';
+import { EditFoodComponent } from './edit-food.component';
 import { HealthyPipe } from './healthy.pipe';
 
 @Component({
   selector: 'food-list',
   inputs: ['foodList'],
-  directives: [FoodInfoComponent, NewFoodComponent],
+  directives: [FoodInfoComponent, NewFoodComponent, EditFoodComponent],
   pipes: [HealthyPipe],
   template: `
   <select (change)="onChange($event.target.value)" class="form-control">
@@ -19,6 +20,7 @@ import { HealthyPipe } from './healthy.pipe';
       <h3 (click)="clickFood(currentFood)">{{currentFood.name}}</h3>
       <food-info *ngIf="selectedFood === currentFood" [food]="currentFood"></food-info>
     </div>
+    <edit-food [food]="selectedFood" *ngIf="selectedFood"></edit-food>
     <new-food (onSubmitNewFood)="createFood($event)"></new-food>
   `
 })
